@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.dao.FlightMapper">
+    <resultMap id="BaseResultMap" type="com.zjut.bean.Flight">
+        <id column="fly_id" jdbcType="INTEGER" property="flyId"/>
+        <result column="origin" jdbcType="VARCHAR" property="origin"/>
+        <result column="destination" jdbcType="VARCHAR" property="destination"/>
+        <result column="c_id" jdbcType="INTEGER" property="cId"/>
+        <result column="time" jdbcType="TIMESTAMP" property="time"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+    </resultMap>
+    <resultMap id="WithComResultMap" type="com.zjut.bean.Flight">
+        <id column="fly_id" jdbcType="INTEGER" property="flyId"/>
+        <result column="origin" jdbcType="VARCHAR" property="origin"/>
+        <result column="destination" jdbcType="VARCHAR" property="destination"/>
+        <result column="c_id" jdbcType="INTEGER" property="cId"/>
+        <result column="time" jdbcType="TIMESTAMP" property="time"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <association property="company" javaType="com.zjut.bean.Company">
+            <id column="com_id" property="comId"/>
+            <result column="com_name" property="comName"/>
+        </association>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    fly_id, origin, destination, c_id, time, price
+    </sql>
+    <sql id="WithCom_Column_List">
+    f.fly_id, f.origin, f.destination, f.c_id, f.time, f.price, c.com_id, c.com_name
+    </sql>
+    <select id="selectByExampleWithCom" parameterType="com.zjut.bean.FlightExample" resultMap="WithComResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="WithCom_Column_List"/>
+        FROM tbl_flight f
+        LEFT JOIN tbl_company c
+        ON f.c_id=c.com_id
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKeyWithCom" parameterType="java.lang.Integer" resultMap="WithComResultMap">
+        select
+        <include refid="WithCom_Column_List"/>
+        FROM tbl_flight f
+        LEFT JOIN tbl_company c
+        ON f.c_id=c.com_id
+        where fly_id = #{flyId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByExample" parameterType="com.zjut.bean.FlightExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from tbl_flight
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_flight
+        where fly_id = #{flyId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_flight
+    where fly_id = #{flyId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.zjut.bean.FlightExample">
+        delete from tbl_flight
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.zjut.bean.Flight">
+    insert into tbl_flight (fly_id, origin, destination, 
+      c_id, time, price)
+    values (#{flyId,jdbcType=INTEGER}, #{origin,jdbcType=VARCHAR}, #{destination,jdbcType=VARCHAR}, 
+      #{cId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{price,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.zjut.bean.Flight">
+        insert into tbl_flight
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="flyId != null">
+                fly_id,
+            </if>
+            <if test="origin != null">
+                origin,
+            </if>
+            <if test="destination != null">
+                destination,
+            </if>
+            <if test="cId != null">
+                c_id,
+            </if>
+            <if test="time != null">
+                time,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="flyId != null">
+                #{flyId,jdbcType=INTEGER},
+            </if>
+            <if test="origin != null">
+                #{origin,jdbcType=VARCHAR},
+            </if>
+            <if test="destination != null">
+                #{destination,jdbcType=VARCHAR},
+            </if>
+            <if test="cId != null">
+                #{cId,jdbcType=INTEGER},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.zjut.bean.FlightExample" resultType="java.lang.Long">
+        select count(*) from tbl_flight
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tbl_flight
+        <set>
+            <if test="record.flyId != null">
+                fly_id = #{record.flyId,jdbcType=INTEGER},
+            </if>
+            <if test="record.origin != null">
+                origin = #{record.origin,jdbcType=VARCHAR},
+            </if>
+            <if test="record.destination != null">
+                destination = #{record.destination,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cId != null">
+                c_id = #{record.cId,jdbcType=INTEGER},
+            </if>
+            <if test="record.time != null">
+                time = #{record.time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.price != null">
+                price = #{record.price,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tbl_flight
+        set fly_id = #{record.flyId,jdbcType=INTEGER},
+        origin = #{record.origin,jdbcType=VARCHAR},
+        destination = #{record.destination,jdbcType=VARCHAR},
+        c_id = #{record.cId,jdbcType=INTEGER},
+        time = #{record.time,jdbcType=TIMESTAMP},
+        price = #{record.price,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bean.Flight">
+        update tbl_flight
+        <set>
+            <if test="origin != null">
+                origin = #{origin,jdbcType=VARCHAR},
+            </if>
+            <if test="destination != null">
+                destination = #{destination,jdbcType=VARCHAR},
+            </if>
+            <if test="cId != null">
+                c_id = #{cId,jdbcType=INTEGER},
+            </if>
+            <if test="time != null">
+                time = #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=INTEGER},
+            </if>
+        </set>
+        where fly_id = #{flyId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zjut.bean.Flight">
+    update tbl_flight
+    set origin = #{origin,jdbcType=VARCHAR},
+      destination = #{destination,jdbcType=VARCHAR},
+      c_id = #{cId,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      price = #{price,jdbcType=INTEGER}
+    where fly_id = #{flyId,jdbcType=INTEGER}
+  </update>
+</mapper>

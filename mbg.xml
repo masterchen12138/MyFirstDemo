@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 连接数据库 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm_crud?serverTimezone=UTC&amp;characterEncoding=utf8&amp;useUnicode=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;allowMultiQueries=true&amp;nullCatalogMeansCurrent=true"
+                        userId="root" password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 指定javabean生成策略，targetPackage：目标包名，targetProject：目标工程 -->
+        <javaModelGenerator targetPackage="com.zjut.bean" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- sql映射文件生成策略 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 指定mapper接口所在位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zjut.dao"
+                             targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 指定要逆向分析哪些表 -->
+        <!--
+        <table tableName="tbl_user" domainObjectName="User"></table>
+        <table tableName="tbl_flight" domainObjectName="Flight"></table>
+        <table tableName="tbl_login" domainObjectName="Login"></table>
+        <table tableName="tbl_order" domainObjectName="Order"></table>
+        <table tableName="tbl_company" domainObjectName="Company"></table>
+        -->
+    </context>
+
+</generatorConfiguration>
