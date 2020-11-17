@@ -1,0 +1,5 @@
+问题1：ajax发送PUT请求时，控制器接受不到数据(只有id值接受到，别的值都为null)
+解决：1.HiddenHttpMethodFilter过滤器，支持Rest风格。
+2.发送POST请求，并在ajax的data字段的表单序列化后添加&_method=PUT
+3.要想直接发送PUT，需在web.xml中添加过滤器FormContentFilter，此时，
+可以直接将ajax的type改为PUT而不用加&_method=PUT
