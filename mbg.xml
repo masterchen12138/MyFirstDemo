@@ -37,13 +37,12 @@
         </javaClientGenerator>
 
         <!-- 指定要逆向分析哪些表 -->
-        <!--
         <table tableName="tbl_user" domainObjectName="User"></table>
         <table tableName="tbl_flight" domainObjectName="Flight"></table>
         <table tableName="tbl_login" domainObjectName="Login"></table>
         <table tableName="tbl_order" domainObjectName="Order"></table>
         <table tableName="tbl_company" domainObjectName="Company"></table>
-        -->
+
     </context>
 
 </generatorConfiguration>
