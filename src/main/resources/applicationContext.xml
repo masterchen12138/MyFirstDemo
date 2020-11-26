@@ -41,9 +41,9 @@
     </bean>
     <aop:config>
         <aop:pointcut id="txPoint" expression="execution(* com.zjut.service..*(..))"/>
-        <aop:advisor advice-ref="txAdice" pointcut-ref="txPoint"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
     </aop:config>
-    <tx:advice id="txAdice" transaction-manager="transactionManager">
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <!-- 所有方法都是事务方法 -->
             <tx:method name="*" />
