@@ -46,9 +46,9 @@
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <!-- 所有方法都是事务方法 -->
-            <tx:method name="*" />
+            <tx:method name="*"/>
             <!-- 以get开始的所有方法设置为只读 -->
-            <tx:method name="get*" read-only="true" />
+            <tx:method name="get*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
 </beans>

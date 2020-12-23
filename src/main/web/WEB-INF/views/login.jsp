@@ -57,12 +57,12 @@
         </table>
     </form>
     <br>
-<%--    <a href="" class="btn btn-sm">中文</a>--%>
-<%--    <a href="" class="btn btn-sm">English</a>--%>
-<%--    &lt;%&ndash;<label class="sr-only">Username</label>&ndash;%&gt;--%>
-<%--    &lt;%&ndash;<label class="sr-only">Password</label>&ndash;%&gt;--%>
-<%--    &lt;%&ndash;<p class="mt-5 mb-3 text-muted">© 2020-2021</p>--%>
-<%--    &ndash;%&gt;--%>
+    <%--    <a href="" class="btn btn-sm">中文</a>--%>
+    <%--    <a href="" class="btn btn-sm">English</a>--%>
+    <%--    &lt;%&ndash;<label class="sr-only">Username</label>&ndash;%&gt;--%>
+    <%--    &lt;%&ndash;<label class="sr-only">Password</label>&ndash;%&gt;--%>
+    <%--    &lt;%&ndash;<p class="mt-5 mb-3 text-muted">© 2020-2021</p>--%>
+    <%--    &ndash;%&gt;--%>
 </div>
 </body>
 </html>

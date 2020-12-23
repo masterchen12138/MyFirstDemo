@@ -93,10 +93,10 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    ord_id, u_id, f_id, time, c_id, money
+        ord_id, u_id, f_id, time, c_id, money
     </sql>
     <sql id="All_message_List">
-    o.ord_id,o.u_id,o.f_id,o.time,o.c_id,o.money,u.user_name,u.id_card,f.origin,f.destination,c.com_name
+        o.ord_id,o.u_id,o.f_id,o.time,o.c_id,o.money,u.user_name,u.id_card,f.origin,f.destination,c.com_name
     </sql>
     <select id="selectByExampleWithOthers" parameterType="com.zjut.bean.OrderExample" resultMap="WithOthersResultMap">
         select
@@ -145,9 +145,9 @@
         where ord_id = #{ordId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tbl_order
-    where ord_id = #{ordId,jdbcType=INTEGER}
-  </delete>
+        delete from tbl_order
+        where ord_id = #{ordId,jdbcType=INTEGER}
+    </delete>
     <delete id="deleteByExample" parameterType="com.zjut.bean.OrderExample">
         delete from tbl_order
         <if test="_parameter != null">
@@ -155,11 +155,11 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.zjut.bean.Order">
-    insert into tbl_order (ord_id, u_id, f_id, 
-      time, c_id, money)
-    values (#{ordId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, 
-      #{time,jdbcType=TIMESTAMP}, #{cId,jdbcType=INTEGER}, #{money,jdbcType=INTEGER})
-  </insert>
+        insert into tbl_order (ord_id, u_id, f_id,
+        time, c_id, money)
+        values (#{ordId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER},
+        #{time,jdbcType=TIMESTAMP}, #{cId,jdbcType=INTEGER}, #{money,jdbcType=INTEGER})
+    </insert>
     <insert id="insertSelective" parameterType="com.zjut.bean.Order">
         insert into tbl_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -269,12 +269,12 @@
         where ord_id = #{ordId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.zjut.bean.Order">
-    update tbl_order
-    set u_id = #{uId,jdbcType=INTEGER},
-      f_id = #{fId,jdbcType=INTEGER},
-      time = #{time,jdbcType=TIMESTAMP},
-      c_id = #{cId,jdbcType=INTEGER},
-      money = #{money,jdbcType=INTEGER}
-    where ord_id = #{ordId,jdbcType=INTEGER}
-  </update>
+        update tbl_order
+        set u_id = #{uId,jdbcType=INTEGER},
+        f_id = #{fId,jdbcType=INTEGER},
+        time = #{time,jdbcType=TIMESTAMP},
+        c_id = #{cId,jdbcType=INTEGER},
+        money = #{money,jdbcType=INTEGER}
+        where ord_id = #{ordId,jdbcType=INTEGER}
+    </update>
 </mapper>

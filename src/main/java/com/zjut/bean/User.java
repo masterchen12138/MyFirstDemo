@@ -7,7 +7,7 @@ public class User {
 	private Integer userId;
 
 	@Pattern(regexp = "(^[a-zA-Z0-9_-]{6,16}$)|(^[\\u4E00-\\u9FA5]{2,5})",
-	message = "用户名必须为2-5位中文或者6-16位英文数字组合")
+			message = "用户名必须为2-5位中文或者6-16位英文数字组合")
 	private String userName;
 
 	private String gender;

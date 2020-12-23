@@ -15,6 +15,7 @@ import java.util.List;
 public class CompanyService {
 	@Autowired
 	CompanyMapper companyMapper;
+
 	public List<Company> getCompanies() {
 		return companyMapper.selectByExample(null);
 	}

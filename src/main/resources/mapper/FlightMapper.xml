@@ -82,10 +82,10 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    fly_id, origin, destination, c_id, time, price
+        fly_id, origin, destination, c_id, time, price
     </sql>
     <sql id="WithCom_Column_List">
-    f.fly_id, f.origin, f.destination, f.c_id, f.time, f.price, c.com_id, c.com_name
+        f.fly_id, f.origin, f.destination, f.c_id, f.time, f.price, c.com_id, c.com_name
     </sql>
     <select id="selectByExampleWithCom" parameterType="com.zjut.bean.FlightExample" resultMap="WithComResultMap">
         select
@@ -132,9 +132,9 @@
         where fly_id = #{flyId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tbl_flight
-    where fly_id = #{flyId,jdbcType=INTEGER}
-  </delete>
+        delete from tbl_flight
+        where fly_id = #{flyId,jdbcType=INTEGER}
+    </delete>
     <delete id="deleteByExample" parameterType="com.zjut.bean.FlightExample">
         delete from tbl_flight
         <if test="_parameter != null">
@@ -142,11 +142,11 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.zjut.bean.Flight">
-    insert into tbl_flight (fly_id, origin, destination, 
-      c_id, time, price)
-    values (#{flyId,jdbcType=INTEGER}, #{origin,jdbcType=VARCHAR}, #{destination,jdbcType=VARCHAR}, 
-      #{cId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{price,jdbcType=INTEGER})
-  </insert>
+        insert into tbl_flight (fly_id, origin, destination,
+        c_id, time, price)
+        values (#{flyId,jdbcType=INTEGER}, #{origin,jdbcType=VARCHAR}, #{destination,jdbcType=VARCHAR},
+        #{cId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{price,jdbcType=INTEGER})
+    </insert>
     <insert id="insertSelective" parameterType="com.zjut.bean.Flight">
         insert into tbl_flight
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -256,12 +256,12 @@
         where fly_id = #{flyId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.zjut.bean.Flight">
-    update tbl_flight
-    set origin = #{origin,jdbcType=VARCHAR},
-      destination = #{destination,jdbcType=VARCHAR},
-      c_id = #{cId,jdbcType=INTEGER},
-      time = #{time,jdbcType=TIMESTAMP},
-      price = #{price,jdbcType=INTEGER}
-    where fly_id = #{flyId,jdbcType=INTEGER}
-  </update>
+        update tbl_flight
+        set origin = #{origin,jdbcType=VARCHAR},
+        destination = #{destination,jdbcType=VARCHAR},
+        c_id = #{cId,jdbcType=INTEGER},
+        time = #{time,jdbcType=TIMESTAMP},
+        price = #{price,jdbcType=INTEGER}
+        where fly_id = #{flyId,jdbcType=INTEGER}
+    </update>
 </mapper>

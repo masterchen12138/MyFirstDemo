@@ -39,7 +39,7 @@ public class OrderService {
 	public Msg saveOrder(Integer userId, int flyId1, String time, int com1, int money1) {
 		if (userId != null) {
 			System.out.println("成功插入一条订单");
-			orderMapper.insertSelective(new Order(null,userId,flyId1,time,com1,money1));
+			orderMapper.insertSelective(new Order(null, userId, flyId1, time, com1, money1));
 			return Msg.success();
 		} else {
 			return Msg.fail();
@@ -51,15 +51,15 @@ public class OrderService {
 	}
 
 	public User getUserIdByIdCard(String idCard) {
-		UserExample example=new UserExample();
-		UserExample.Criteria criteria=example.createCriteria();
+		UserExample example = new UserExample();
+		UserExample.Criteria criteria = example.createCriteria();
 		criteria.andIdCardEqualTo(idCard);
 		return userMapper.selectByExample(example).get(0);
 	}
 
 	public List<Order> getOrdersByUserId(Integer userId) {
-		OrderExample example=new OrderExample();
-		OrderExample.Criteria criteria=example.createCriteria();
+		OrderExample example = new OrderExample();
+		OrderExample.Criteria criteria = example.createCriteria();
 		criteria.andUIdEqualTo(userId);
 		return orderMapper.selectByExampleWithOthers(example);
 	}
@@ -69,8 +69,8 @@ public class OrderService {
 	}
 
 	public void deleteBatch(List<Integer> del_ids) {
-		OrderExample example=new OrderExample();
-		OrderExample.Criteria criteria=example.createCriteria();
+		OrderExample example = new OrderExample();
+		OrderExample.Criteria criteria = example.createCriteria();
 		criteria.andOrdIdIn(del_ids);
 		orderMapper.deleteByExample(example);
 	}
@@ -80,8 +80,8 @@ public class OrderService {
 	}
 
 	public long checkUserExist(User user) {
-		UserExample example=new UserExample();
-		UserExample.Criteria criteria=example.createCriteria();
+		UserExample example = new UserExample();
+		UserExample.Criteria criteria = example.createCriteria();
 		criteria.andIdCardEqualTo(user.getIdCard());
 		return userMapper.countByExample(example);
 	}

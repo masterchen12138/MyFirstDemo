@@ -24,7 +24,7 @@ public class Order {
 
 	private Company company;
 
-	@Pattern(regexp = "^[1-9]\\d*$",message = "此项必须为正整数")
+	@Pattern(regexp = "^[1-9]\\d*$", message = "此项必须为正整数")
 	private Integer money;
 
 	public Order() {
