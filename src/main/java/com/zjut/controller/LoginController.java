@@ -1,17 +1,12 @@
 package com.zjut.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.zjut.bean.Login;
-import com.zjut.bean.Msg;
-import com.zjut.bean.User;
 import com.zjut.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import javax.sound.midi.Soundbank;
 
 /**
  * @author 叶琛
